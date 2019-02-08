@@ -1,0 +1,11 @@
+#!/bin/bash
+#Could add regex support and hidden file choice, specify line number para big files and a help
+str="$@"
+echo "$@"
+for fname in $(find . -name '*.tex' -type f | grep -v '/\.')
+do
+    LANG=C grep --color -niFC 2 "$str" $fname
+if [ "$?" -eq 0 ]; then
+    echo -e "\n" $fname "\n"
+fi
+done
